@@ -20,10 +20,12 @@ public class PatrolState : State
     protected override void OnUpdate()
     {
         // Search for player
-        //if (Physics.Raycast(sc.transform.position, sc.transform.forward))
-        //{
-        //    //sc.ChangeState(sc.chaseState);
-        //} else 
+        if (sc.DetectPlayer())
+        {
+            sc.ChangeState(sc.chaseState);
+            return;
+        }
+
         if (!sc.agent.pathPending)
         {
             if (sc.agent.remainingDistance <= sc.agent.stoppingDistance)
@@ -39,7 +41,7 @@ public class PatrolState : State
 
     public void MoveToRandomLocation()
     {
-        RandomWalkAnimation();
+        sc.RandomWalkAnimation();
         Vector3 randomPoint = sc.transform.position + Random.insideUnitSphere * range;
         randomPoint.y = 0;
         
@@ -67,11 +69,5 @@ public class PatrolState : State
         // "Must've been the wind"
     }
 
-    private void RandomWalkAnimation()
-    {
-        int randomIndex = Random.Range(1, 5);
-        animator.SetInteger("WalkIndex", randomIndex);
-        animator.SetInteger("IdleIndex", 0);
-
-    }
+    
 }

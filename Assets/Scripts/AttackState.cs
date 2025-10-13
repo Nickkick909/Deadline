@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class IdleState: State
+public class AttackState: State
 {
     float timeBeforeSleep;
 
@@ -10,26 +10,26 @@ public class IdleState: State
         // "What was that!?"
         timeBeforeSleep = 5;
 
-        Debug.Log("Idle State");
-
+        Debug.Log("Attack State");
+        sc.agent.ResetPath();
+        sc.agent.isStopped = true;
         sc.RandomIdleAnimation();
+
+        
     }
 
     protected override void OnUpdate()
     {
-        // Search for player
-        if (sc.DetectPlayer())
-        {
-            sc.ChangeState(sc.chaseState);
-            return;
-        }
-
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0))
-        { 
-            sc.ChangeState(sc.patrolState);
-        }
-
-        timeBeforeSleep -= Time.deltaTime;
+        //if (!sc.agent.pathPending)
+        //{
+        //    if (sc.agent.remainingDistance <= sc.agent.stoppingDistance)
+        //    {
+        //        if (!sc.agent.hasPath || sc.agent.velocity.sqrMagnitude == 0f)
+        //        {
+        //            sc.ChangeState(sc.idleState);
+        //        }
+        //    }
+        //}
     }
 
 
