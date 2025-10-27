@@ -1,0 +1,11 @@
+Model Information:
+* title:	Access Lock System (Card + PIN)
+* source:	https://sketchfab.com/3d-models/access-lock-system-card-pin-c9f6e26d5dbb493f9998f6b4be1fbde2
+* author:	Meowdeler (https://sketchfab.com/ncode500230)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Access Lock System (Card + PIN)" (https://sketchfab.com/3d-models/access-lock-system-card-pin-c9f6e26d5dbb493f9998f6b4be1fbde2) by Meowdeler (https://sketchfab.com/ncode500230) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

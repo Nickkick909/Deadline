@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758821244686228}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0.00391, y: 0.00101, z: -0.01013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4187846790420652}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!108 &108233052158460636
 Light:
   m_ObjectHideFlags: 0
@@ -40,17 +40,17 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758821244686228}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
-  m_Type: 2
-  m_Color: {r: 1, g: 0.9932969, b: 0.7877358, a: 1}
+  m_Type: 0
+  m_Color: {r: 0.9952344, g: 1, b: 0.7688679, a: 1}
   m_Intensity: 0
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_Range: 5
+  m_SpotAngle: 179
+  m_InnerSpotAngle: 60
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -82,7 +82,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 3
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 33243805736109696}
   - component: {fileID: 23591335266172378}
   - component: {fileID: 64275091872676094}
+  - component: {fileID: 4437202830059316822}
   m_Layer: 0
   m_Name: Lamp A
   m_TagString: Untagged
@@ -195,7 +196,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 925b8fd9e0528aa439f35261c5d12cf8, type: 2}
+  - {fileID: 2100000, guid: b27ba87e4edcb1d4f9300ff9c18e6bde, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -240,6 +241,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300184, guid: 18cd780e6948a554a850b2d047ebf8fb, type: 3}
+--- !u!114 &4437202830059316822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772491579394062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9be562c78f81184d942b5c08dd5560c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightEmission
+  lightSource: {fileID: 108233052158460636}
 --- !u!1 &1938521857057578
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +263,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4469440552435346}
-  - component: {fileID: 6787538036907698638}
   m_Layer: 0
   m_Name: Lamp A Prefab
   m_TagString: Untagged
@@ -273,17 +286,3 @@ Transform:
   - {fileID: 4187846790420652}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6787538036907698638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938521857057578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9be562c78f81184d942b5c08dd5560c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LightEmission
-  lightSource: {fileID: 108233052158460636}
-  material: {fileID: 2100000, guid: 925b8fd9e0528aa439f35261c5d12cf8, type: 2}

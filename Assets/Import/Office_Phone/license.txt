@@ -1,0 +1,11 @@
+Model Information:
+* title:	Office Phone
+* source:	https://sketchfab.com/3d-models/office-phone-641c0dae3dbf4d9f8fec88aa791e05a4
+* author:	gabeharmonstudio (https://sketchfab.com/gabeharmonstudio)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Office Phone" (https://sketchfab.com/3d-models/office-phone-641c0dae3dbf4d9f8fec88aa791e05a4) by gabeharmonstudio (https://sketchfab.com/gabeharmonstudio) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

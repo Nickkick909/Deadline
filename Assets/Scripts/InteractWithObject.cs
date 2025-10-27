@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InteractWithObject : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class InteractWithObject : MonoBehaviour
 
     InteractObject currentObject;
 
+    private InputAction interactButton;
+
+    private void Awake()
+    {
+        interactButton = InputSystem.actions.FindAction("Interact");
+    }
 
     void Start()
     {
@@ -30,11 +37,17 @@ public class InteractWithObject : MonoBehaviour
     {
         Vector3 forward = playerCamera.TransformDirection(Vector3.forward) * 10;
         RaycastHit hit;
-        Physics.Raycast(playerCamera.position, forward, out hit, interactRange, interactMask);
+        Physics.Raycast(playerCamera.position, forward, out hit, interactRange);
 
-        Debug.DrawRay(playerCamera.position, forward, Color.green);
+        //Debug.DrawRay(playerCamera.position, forward, Color.green);
 
         //Debug.Log("Hit: " + hit.transform.gameObject.name);
+
+        if ((1 << hit.transform?.gameObject?.layer) != interactMask)
+        {
+            currentObject?.RemoveHighLight();
+            return;
+        }
 
         if (hit.transform != null)
         {
@@ -51,11 +64,7 @@ public class InteractWithObject : MonoBehaviour
 
                 currentObject = interactTemp;
 
-                // Check for key input
-                if (Input.GetKeyDown(currentObject.interactKey))
-                {
-                    currentObject.HandleInteract();
-                }
+                
 
 
             }
@@ -65,8 +74,14 @@ public class InteractWithObject : MonoBehaviour
 
         }
 
+        // Check for key input
+        if (interactButton.WasPressedThisFrame())
+        {
+            currentObject?.HandleInteract();
+        }
 
-        
+
+
 
     }
 
