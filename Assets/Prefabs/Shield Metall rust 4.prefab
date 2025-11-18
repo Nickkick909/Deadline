@@ -189,7 +189,10 @@ GameObject:
   - component: {fileID: 8871185004936444604}
   - component: {fileID: 932826482866063679}
   - component: {fileID: 749514188647633394}
-  m_Layer: 0
+  - component: {fileID: 775241241463894192}
+  - component: {fileID: 4042535082406952178}
+  - component: {fileID: 2385933906266561308}
+  m_Layer: 6
   m_Name: Switch005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,6 +271,71 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &775241241463894192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407935219618576430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &4042535082406952178
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407935219618576430}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.38099998, y: 0.07620004, z: 0.25710455}
+  m_Center: {x: 0, y: 0, z: -0.00001527369}
+--- !u!114 &2385933906266561308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407935219618576430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b56142a071d4e4fa25188a696d7884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractObject
+  outline: {fileID: 775241241463894192}
+  isTargeted: 0
+  interactType: 2
+  itemType: 0
+  interactKey: 0
+  requiredObject: {fileID: 0}
+  requiresObject: 0
+  interactString: Press 'E' to Flip Breaker
+  cannotInteractString: 
+  breakerPuzzle: {fileID: 4531598631831863341}
+  phonePuzzle: {fileID: 0}
+  powerResetPuzzle: {fileID: 0}
+  itemIndex: 5
+  audioSource: {fileID: 0}
 --- !u!1 &463541627851877408
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +614,10 @@ GameObject:
   - component: {fileID: 2861573397171528944}
   - component: {fileID: 7180820329061454012}
   - component: {fileID: 9014792601784345663}
-  m_Layer: 0
+  - component: {fileID: 4977381706901607226}
+  - component: {fileID: 1623695454099437813}
+  - component: {fileID: 8214190208525749119}
+  m_Layer: 6
   m_Name: Switch004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -625,6 +696,71 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4977381706901607226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402083379105849267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &1623695454099437813
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402083379105849267}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.38099998, y: 0.07620004, z: 0.25710455}
+  m_Center: {x: 0, y: 0.0000019073486, z: -0.00001527369}
+--- !u!114 &8214190208525749119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402083379105849267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b56142a071d4e4fa25188a696d7884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractObject
+  outline: {fileID: 4977381706901607226}
+  isTargeted: 0
+  interactType: 2
+  itemType: 0
+  interactKey: 0
+  requiredObject: {fileID: 0}
+  requiresObject: 0
+  interactString: Press 'E' to Flip Breaker
+  cannotInteractString: 
+  breakerPuzzle: {fileID: 4531598631831863341}
+  phonePuzzle: {fileID: 0}
+  powerResetPuzzle: {fileID: 0}
+  itemIndex: 4
+  audioSource: {fileID: 0}
 --- !u!1 &1573775095573603322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,7 +1218,10 @@ GameObject:
   - component: {fileID: 7849513617590735511}
   - component: {fileID: 4378088076465373579}
   - component: {fileID: 3166411713729555943}
-  m_Layer: 0
+  - component: {fileID: 4925105074015785239}
+  - component: {fileID: 3386213723879379371}
+  - component: {fileID: 7949715099159907575}
+  m_Layer: 6
   m_Name: Switch007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1161,6 +1300,71 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4925105074015785239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2971536587907629547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &3386213723879379371
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2971536587907629547}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.38099998, y: 0.07620004, z: 0.25710455}
+  m_Center: {x: 0, y: 0, z: -0.00001527369}
+--- !u!114 &7949715099159907575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2971536587907629547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b56142a071d4e4fa25188a696d7884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractObject
+  outline: {fileID: 4925105074015785239}
+  isTargeted: 0
+  interactType: 2
+  itemType: 0
+  interactKey: 0
+  requiredObject: {fileID: 0}
+  requiresObject: 0
+  interactString: Press 'E' to Flip Breaker
+  cannotInteractString: 
+  breakerPuzzle: {fileID: 4531598631831863341}
+  phonePuzzle: {fileID: 0}
+  powerResetPuzzle: {fileID: 0}
+  itemIndex: 7
+  audioSource: {fileID: 0}
 --- !u!1 &3015557360875316218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,6 +1820,8 @@ GameObject:
   m_Component:
   - component: {fileID: 346077077218980271}
   - component: {fileID: 7658231000263974101}
+  - component: {fileID: 4531598631831863341}
+  - component: {fileID: 4118254780532935457}
   m_Layer: 0
   m_Name: Shield Metall rust 4
   m_TagString: Untagged
@@ -1633,7 +1839,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.5015006, y: 0.50148255, z: -0.50661176, w: 0.4902622}
   m_LocalPosition: {x: -4.51, y: 3.59, z: -5.58}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.661973, y: 0.661973, z: 0.661973}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4577052867376449607}
@@ -1693,6 +1899,134 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4531598631831863341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3645341313212875708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01b4f9751a80674e9f68c6ec3213aee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BreakerPuzzle
+  breakerStates: 00000000000000
+  breakers:
+  - {fileID: 3015557360875316218}
+  - {fileID: 134478832293278202}
+  - {fileID: 4080906170887768645}
+  - {fileID: 7100201269482988335}
+  - {fileID: 3542860955270992711}
+  - {fileID: 189250835518836870}
+  - {fileID: 7903151976930138751}
+  - {fileID: 5621964368412562870}
+  breakerFinal: {fileID: 2832319837117623788}
+  greenLight: {fileID: 2100000, guid: 66fd3d08bd7750648b6edc262480b509, type: 2}
+  redLight: {fileID: 2100000, guid: c42f9e6112b30564d87813528edcd4fc, type: 2}
+  doorToOpen: {fileID: 0}
+  doorToOpen2: {fileID: 0}
+  breakerAudio: {fileID: 8300000, guid: c289b48751561a34c8609c9c4dda567f, type: 3}
+  breakerOnAudio: {fileID: 8300000, guid: 4d070f048dbe4704e86616bb3a6aa4de, type: 3}
+  breakerAudioSource: {fileID: 4118254780532935457}
+  completed: 0
+--- !u!82 &4118254780532935457
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3645341313212875708}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -1418795448254951719, guid: 9c02bb7a2399baa4eae198c43fe490ba, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3754373621727758685
 GameObject:
   m_ObjectHideFlags: 0
@@ -2773,7 +3107,10 @@ GameObject:
   - component: {fileID: 2327149626768863857}
   - component: {fileID: 5012550717816189371}
   - component: {fileID: 1036970078724750415}
-  m_Layer: 0
+  - component: {fileID: 6615891473658034040}
+  - component: {fileID: 1645685360352237295}
+  - component: {fileID: 7648113840289358543}
+  m_Layer: 6
   m_Name: Switch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2852,6 +3189,71 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6615891473658034040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6535048282233699467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &1645685360352237295
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6535048282233699467}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.38099998, y: 0.07620004, z: 0.25710455}
+  m_Center: {x: 0, y: 0, z: -0.00001527369}
+--- !u!114 &7648113840289358543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6535048282233699467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b56142a071d4e4fa25188a696d7884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractObject
+  outline: {fileID: 6615891473658034040}
+  isTargeted: 0
+  interactType: 2
+  itemType: 0
+  interactKey: 0
+  requiredObject: {fileID: 0}
+  requiresObject: 0
+  interactString: Press 'E' to Flip Breaker
+  cannotInteractString: 
+  breakerPuzzle: {fileID: 4531598631831863341}
+  phonePuzzle: {fileID: 0}
+  powerResetPuzzle: {fileID: 0}
+  itemIndex: 0
+  audioSource: {fileID: 0}
 --- !u!1 &6604079442463297872
 GameObject:
   m_ObjectHideFlags: 0
@@ -2863,7 +3265,10 @@ GameObject:
   - component: {fileID: 2746681852106436275}
   - component: {fileID: 1631587406773495676}
   - component: {fileID: 5276868953577995327}
-  m_Layer: 0
+  - component: {fileID: 7763027783563930890}
+  - component: {fileID: 5321218315659013377}
+  - component: {fileID: 4621702360170797180}
+  m_Layer: 6
   m_Name: Switch006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2942,6 +3347,71 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7763027783563930890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604079442463297872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &5321218315659013377
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604079442463297872}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.38099998, y: 0.07620004, z: 0.25710455}
+  m_Center: {x: 0, y: 0.0000019073486, z: -0.00001527369}
+--- !u!114 &4621702360170797180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604079442463297872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b56142a071d4e4fa25188a696d7884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractObject
+  outline: {fileID: 7763027783563930890}
+  isTargeted: 0
+  interactType: 2
+  itemType: 0
+  interactKey: 0
+  requiredObject: {fileID: 0}
+  requiresObject: 0
+  interactString: Press 'E' to Flip Breaker
+  cannotInteractString: 
+  breakerPuzzle: {fileID: 4531598631831863341}
+  phonePuzzle: {fileID: 0}
+  powerResetPuzzle: {fileID: 0}
+  itemIndex: 6
+  audioSource: {fileID: 0}
 --- !u!1 &6620036175144581676
 GameObject:
   m_ObjectHideFlags: 0
@@ -2953,7 +3423,10 @@ GameObject:
   - component: {fileID: 3188893819888402958}
   - component: {fileID: 8383292637727638504}
   - component: {fileID: 5635278813107022345}
-  m_Layer: 0
+  - component: {fileID: 2144095888360265542}
+  - component: {fileID: 4163637742963265819}
+  - component: {fileID: 3869868641852904465}
+  m_Layer: 6
   m_Name: Switch003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3032,6 +3505,71 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2144095888360265542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620036175144581676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &4163637742963265819
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620036175144581676}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.38099998, y: 0.07620004, z: 0.25710455}
+  m_Center: {x: 0, y: 0.0000019073486, z: -0.00001527369}
+--- !u!114 &3869868641852904465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620036175144581676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b56142a071d4e4fa25188a696d7884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractObject
+  outline: {fileID: 2144095888360265542}
+  isTargeted: 0
+  interactType: 2
+  itemType: 0
+  interactKey: 0
+  requiredObject: {fileID: 0}
+  requiresObject: 0
+  interactString: Press 'E' to Flip Breaker
+  cannotInteractString: 
+  breakerPuzzle: {fileID: 4531598631831863341}
+  phonePuzzle: {fileID: 0}
+  powerResetPuzzle: {fileID: 0}
+  itemIndex: 3
+  audioSource: {fileID: 0}
 --- !u!1 &6886201682271472430
 GameObject:
   m_ObjectHideFlags: 0
@@ -3132,7 +3670,10 @@ GameObject:
   - component: {fileID: 4495628597761206899}
   - component: {fileID: 3312796619837969781}
   - component: {fileID: 7320365139787304682}
-  m_Layer: 0
+  - component: {fileID: 400096168945816975}
+  - component: {fileID: 5821395829523094492}
+  - component: {fileID: 2099609107891953562}
+  m_Layer: 6
   m_Name: Switch002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3211,6 +3752,71 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &400096168945816975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6922891407417305339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &5821395829523094492
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6922891407417305339}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.38099998, y: 0.07620004, z: 0.25710455}
+  m_Center: {x: 0, y: 0.0000019073486, z: -0.00001527369}
+--- !u!114 &2099609107891953562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6922891407417305339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b56142a071d4e4fa25188a696d7884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractObject
+  outline: {fileID: 400096168945816975}
+  isTargeted: 0
+  interactType: 2
+  itemType: 0
+  interactKey: 0
+  requiredObject: {fileID: 0}
+  requiresObject: 0
+  interactString: Press 'E' to Flip Breaker
+  cannotInteractString: 
+  breakerPuzzle: {fileID: 4531598631831863341}
+  phonePuzzle: {fileID: 0}
+  powerResetPuzzle: {fileID: 0}
+  itemIndex: 2
+  audioSource: {fileID: 0}
 --- !u!1 &6936245682855301358
 GameObject:
   m_ObjectHideFlags: 0
@@ -3759,7 +4365,8 @@ GameObject:
   - component: {fileID: 3896934683770943855}
   - component: {fileID: 331778246464458326}
   - component: {fileID: 2832319837117623788}
-  m_Layer: 0
+  - component: {fileID: 3783925661235151013}
+  m_Layer: 6
   m_Name: Main Switch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3875,10 +4482,34 @@ MonoBehaviour:
   interactKey: 0
   requiredObject: {fileID: 0}
   requiresObject: 0
-  interactString: 
+  interactString: Press 'E' to Pull Breaker
   cannotInteractString: 
-  breakerPuzzle: {fileID: 0}
+  breakerPuzzle: {fileID: 4531598631831863341}
+  phonePuzzle: {fileID: 0}
+  powerResetPuzzle: {fileID: 0}
   itemIndex: 0
+  audioSource: {fileID: 0}
+--- !u!65 &3783925661235151013
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7987094976509050732}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.1778, y: 0.61981994, z: 0.19391151}
+  m_Center: {x: 0, y: 0, z: -0.000030517578}
 --- !u!1 &8529863002521649872
 GameObject:
   m_ObjectHideFlags: 0
@@ -3890,7 +4521,10 @@ GameObject:
   - component: {fileID: 1110456368424947613}
   - component: {fileID: 2430646400750252644}
   - component: {fileID: 7224984073063485966}
-  m_Layer: 0
+  - component: {fileID: 1150545573341858917}
+  - component: {fileID: 1359370552422434974}
+  - component: {fileID: 2051615253422930301}
+  m_Layer: 6
   m_Name: Switch001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3969,6 +4603,71 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1150545573341858917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8529863002521649872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &1359370552422434974
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8529863002521649872}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.38099998, y: 0.07620004, z: 0.25710455}
+  m_Center: {x: 0, y: 0.0000019073486, z: -0.00001527369}
+--- !u!114 &2051615253422930301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8529863002521649872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b56142a071d4e4fa25188a696d7884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractObject
+  outline: {fileID: 1150545573341858917}
+  isTargeted: 0
+  interactType: 2
+  itemType: 0
+  interactKey: 0
+  requiredObject: {fileID: 0}
+  requiresObject: 0
+  interactString: Press 'E' to Flip Breaker
+  cannotInteractString: 
+  breakerPuzzle: {fileID: 4531598631831863341}
+  phonePuzzle: {fileID: 0}
+  powerResetPuzzle: {fileID: 0}
+  itemIndex: 1
+  audioSource: {fileID: 0}
 --- !u!1 &8715320722967459625
 GameObject:
   m_ObjectHideFlags: 0

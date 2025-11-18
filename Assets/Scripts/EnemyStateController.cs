@@ -6,6 +6,8 @@ public class EnemyStateController : MonoBehaviour
 {
     [SerializeField] State currentState;
 
+    public Transform monsterEyes;
+
     public PatrolState patrolState = new PatrolState();
     public IdleState idleState = new IdleState();
     public ChaseState chaseState = new ChaseState();
@@ -17,7 +19,20 @@ public class EnemyStateController : MonoBehaviour
 
     public GameObject player;
     public float fieldOfViewAngle = 120f; // Field of view in degrees
-    public const float detectionRadius = 10f; // Radius of detection
+    public float detectionRadius = 10f; // Radius of detection
+
+    public float lightsOnFOV = 300f;
+    public float lightsOnRadius = 8f;
+
+    public float lightsOffFOV = 45f;
+    public float lightsOffRadius = 2f;
+
+    public Transform[] monsterPatrolPoints;
+    public int patrolPointIndex = 0;
+
+    bool lightsOn = false;
+
+    public AudioSource footsteps;
 
     private void Start()
     {
@@ -45,6 +60,8 @@ public class EnemyStateController : MonoBehaviour
             //}
 
         }
+
+        UpdateMonsterVision();
     }
 
     public void ChangeState(State newState)
@@ -57,40 +74,75 @@ public class EnemyStateController : MonoBehaviour
         currentState.OnStateEnter(this, animator);
     }
 
-    public bool DetectPlayer(float detectionRadius = detectionRadius)
+    public bool DetectPlayer(float detection)
     {
         RaycastHit hit; // Stores information about the hit
         Vector3 direction = transform.TransformDirection(Vector3.forward); // Ray direction
-        Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+        Vector3 directionToPlayer = ((player.transform.position + new Vector3(0, 0.35f, 0)) - monsterEyes.position).normalized;
         // Calculate direction to the player
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
         // Check if the player is within the detection radius
-        if (distanceToPlayer <= detectionRadius)
+        if (distanceToPlayer <= detection)
         {
             // Check if the player is within the field of view
             float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
             if (angleToPlayer <= fieldOfViewAngle / 2)
             {
-                Debug.Log("Detected Player!!");
-                return true;
+                Debug.DrawRay(monsterEyes.position, directionToPlayer * detection, Color.red);
+
+
+                // Cast a ray forward from the object's position
+                if (Physics.Raycast(monsterEyes.position, directionToPlayer, out hit, detection))
+                {
+
+                    if (hit.collider.gameObject.CompareTag("Player"))
+                    {
+                        Debug.Log("Detected Player");
+                        return true;
+                    } else
+                    {
+                        Debug.Log("Player hidden");
+                        return false;
+                    }
+                    
+                }
+                else
+                {
+                    return false;
+                }
             }
 
-                return false;
+            return false;
         }
         return false;
 
-        //// Cast a ray forward from the object's position
-        //if (Physics.Raycast(transform.position, directionToPlayer, out hit, 10f))
-        //{
-        //    Debug.Log($"Hit {hit.collider.gameObject.name} at distance {hit.distance}");
-        //    return true;
-        //} else
-        //{
-        //    return false;
-        //}
+        
     }
 
+
+    public void LightsOn()
+    {
+        lightsOn = true;
+    }
+
+    public void LightsOff()
+    {
+        lightsOn = false;
+    }
+
+    void UpdateMonsterVision()
+    {
+        if (OffsetFlashlight.playerFlashlight.IsOn || lightsOn)
+        {
+            fieldOfViewAngle = lightsOnFOV;
+            detectionRadius = lightsOnRadius;
+        } else
+        {
+            fieldOfViewAngle = lightsOffFOV;
+            detectionRadius = lightsOffRadius;
+        }
+    }
     public void RandomWalkAnimation()
     {
         int randomIndex = UnityEngine.Random.Range(1, 4);

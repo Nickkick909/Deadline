@@ -8,19 +8,20 @@ public class PatrolState : State
 
     protected override void OnEnter()
     {
+        sc.footsteps.UnPause();
         // "What was that!?"
 
         Debug.Log("Patrol State");
 
-        MoveToRandomLocation();
-
+        //MoveToRandomLocation();
+        MoveToNextPoint();
 
     }
 
     protected override void OnUpdate()
     {
         // Search for player
-        if (sc.DetectPlayer())
+        if (sc.DetectPlayer(sc.detectionRadius))
         {
             sc.ChangeState(sc.chaseState);
             return;
@@ -30,6 +31,13 @@ public class PatrolState : State
         {
             if (sc.agent.remainingDistance <= sc.agent.stoppingDistance)
             {
+                sc.patrolPointIndex += 1;
+
+                if (sc.patrolPointIndex > sc.monsterPatrolPoints.Length - 1)
+                {
+                    sc.patrolPointIndex = 0;
+                }
+
                 if (!sc.agent.hasPath || sc.agent.velocity.sqrMagnitude == 0f)
                 {
                     sc.ChangeState(sc.idleState);
@@ -56,6 +64,16 @@ public class PatrolState : State
         {
             Debug.Log("No valid NavMesh point found.");
         }
+    }
+
+    public void MoveToNextPoint()
+    {
+        sc.RandomWalkAnimation();
+        Vector3 nextPoint = sc.monsterPatrolPoints[sc.patrolPointIndex].position;
+
+        sc.agent.SetDestination(nextPoint);
+
+
     }
 
     protected override void OnHurt()

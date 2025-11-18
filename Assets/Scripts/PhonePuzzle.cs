@@ -17,15 +17,12 @@ public class PhonePuzzle : MonoBehaviour
     public AudioSource monsterAudioSource2;
 
     public Light[] redLights;
+    public GameObject monster;
+    public Animator lightsAnim;
 
     public void StartPhonePuzzle()
     {
-        PlayPhoneRing();
-
         gameObject.GetComponent<BoxCollider>().enabled = false;
-
-        ObjectiveManager.objectiveManager.UpdateObjectiveText("Quick!! Silence that phone!! The monster might hear it!!");
-
     }
 
     public void AnswerPhone()
@@ -65,11 +62,16 @@ public class PhonePuzzle : MonoBehaviour
         if (phoneIndex == 0)
         {
             monsterAudioSource.Play();
+            yield return new WaitForSeconds(0.5f);
+
+            ObjectiveManager.objectiveManager.UpdateObjectiveText("That sounds close!!");
         }
 
         if (phoneIndex == 2)
         {
             monsterAudioSource2.Play();
+            yield return new WaitForSeconds(0.5f);
+            ObjectiveManager.objectiveManager.UpdateObjectiveText("Who keeps calling!! They are gonna get me killed!!");
         }
 
         phoneIndex++;
@@ -80,8 +82,15 @@ public class PhonePuzzle : MonoBehaviour
 
             for (int i = 0; i < redLights.Length; i++)
             {
-                redLights[i].enabled = true;
+                redLights[i].intensity = 1;
             }
+
+            lightsAnim.SetBool("RedLights", true);
+
+            monster.SetActive(true);
+
+            yield return new WaitForSeconds(2);
+            ObjectiveManager.objectiveManager.UpdateObjectiveText("Ok, that seems to be the last one. Lets get out of here, and keep going down stairs!!");
         } else
         {
             PlayPhoneRing();
@@ -104,5 +113,14 @@ public class PhonePuzzle : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         StartPhonePuzzle();
+    }
+
+    IEnumerator PlayFirstPhone()
+    {
+        yield return new WaitForSeconds(3f);
+
+        PlayPhoneRing();
+
+        ObjectiveManager.objectiveManager.UpdateObjectiveText("Quick!! Silence that phone!! The monster might hear it!!");
     }
 }

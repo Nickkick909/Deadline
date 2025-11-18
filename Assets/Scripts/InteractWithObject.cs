@@ -17,6 +17,10 @@ public class InteractWithObject : MonoBehaviour
 
     private InputAction interactButton;
 
+    // Optional optimization: check ray every X seconds instead of every frame
+    [SerializeField] private float rayCheckInterval = 0.02f; // 50 Hz
+    private float rayCheckTimer = 0f;
+
     private void Awake()
     {
         interactButton = InputSystem.actions.FindAction("Interact");
@@ -30,55 +34,52 @@ public class InteractWithObject : MonoBehaviour
 
     void Update()
     {
-        HandleInteract();   
-    }
-
-    void HandleInteract()
-    {
-        Vector3 forward = playerCamera.TransformDirection(Vector3.forward) * 10;
-        RaycastHit hit;
-        Physics.Raycast(playerCamera.position, forward, out hit, interactRange);
-
-        //Debug.DrawRay(playerCamera.position, forward, Color.green);
-
-        //Debug.Log("Hit: " + hit.transform.gameObject.name);
-
-        if ((1 << hit.transform?.gameObject?.layer) != interactMask)
+        rayCheckTimer += Time.deltaTime;
+        if (rayCheckTimer >= rayCheckInterval)
         {
-            currentObject?.RemoveHighLight();
-            return;
+            rayCheckTimer = 0f;
+            HandleRaycast();
         }
 
-        if (hit.transform != null)
-        {
-            InteractObject interactTemp = hit.transform.gameObject.GetComponent<InteractObject>();
-
-            if (interactTemp != null)
-            {
-                interactTemp.HighLightObject();
-
-                if (currentObject != null && currentObject != interactTemp)
-                {
-                    currentObject.RemoveHighLight();
-                }
-
-                currentObject = interactTemp;
-
-                
-
-
-            }
-        } else
-        {
-            currentObject?.RemoveHighLight();
-
-        }
-
-        // Check for key input
+        // Interact input can be checked every frame
         if (interactButton.WasPressedThisFrame())
         {
             currentObject?.HandleInteract();
         }
+    }
+
+    void HandleRaycast()
+    {
+        Vector3 forward = playerCamera.forward;
+        RaycastHit hit;
+        Physics.Raycast(playerCamera.position, forward, out hit, interactRange);
+
+        // Keep your original layer check
+        if ((1 << hit.transform?.gameObject?.layer) != interactMask)
+        {
+            currentObject?.RemoveHighLight();
+            currentObject = null;
+            return;
+        }
+
+        InteractObject hitObject = hit.transform.GetComponent<InteractObject>();
+
+        // Only update highlight if the object changed
+        if (hitObject != currentObject)
+        {
+            currentObject?.RemoveHighLight();
+            if (hitObject != null)
+            {
+                hitObject.HighLightObject();
+            }
+            currentObject = hitObject;
+        }
+
+        //// Check for key input
+        //if (interactButton.WasPressedThisFrame())
+        //{
+        //    currentObject?.HandleInteract();
+        //}
 
 
 

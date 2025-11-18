@@ -21,6 +21,7 @@ public class BreakerPuzzle : MonoBehaviour
     public AudioSource breakerAudioSource;
 
     private bool init = false;
+    public bool completed = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -115,11 +116,21 @@ public class BreakerPuzzle : MonoBehaviour
 
         greenLight.EnableKeyword("_EMISSION");
 
-        doorToOpen.requiresObject = false;
-        doorToOpen2.requiresObject = false;
+        if (doorToOpen != null)
+        {
+            doorToOpen.requiresObject = false;
+        }
+
+        if (doorToOpen2 != null)
+        {
+            doorToOpen2.requiresObject = false;
+        }
+
 
         ObjectiveManager.objectiveManager.UpdateObjectiveText("Power restored to the stair doors. I can go down now.");
         breakerAudioSource.PlayOneShot(breakerOnAudio);
+
+        completed = true;
 
     }
 

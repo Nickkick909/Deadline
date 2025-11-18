@@ -7,6 +7,8 @@ public class ChaseState: State
 
     protected override void OnEnter()
     {
+        sc.footsteps.UnPause();
+
         // "What was that!?"
         timeBeforeSleep = 5;
 
@@ -32,7 +34,7 @@ public class ChaseState: State
             {
                 if (!sc.agent.hasPath || sc.agent.velocity.sqrMagnitude == 0f)
                 {
-                    if (sc.DetectPlayer())
+                    if (sc.DetectPlayer(sc.detectionRadius))
                     {
                         sc.ChangeState(sc.chaseState);
                         return;

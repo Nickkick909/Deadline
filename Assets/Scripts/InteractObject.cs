@@ -22,6 +22,7 @@ public class InteractObject : MonoBehaviour
 
     public BreakerPuzzle breakerPuzzle;
     public PhonePuzzle phonePuzzle;
+    public PowerResetPuzzle powerResetPuzzle;
     public int itemIndex;
 
     public AudioSource audioSource;
@@ -98,7 +99,7 @@ public class InteractObject : MonoBehaviour
 
             Player.player.AddItemToInventory(gameObject);
 
-            StartCoroutine(WaitForAudio());
+            Destroy(gameObject);
         }
 
         if (interactType == InteractType.Door)
@@ -127,18 +128,14 @@ public class InteractObject : MonoBehaviour
         {
             phonePuzzle.AnswerPhone();
         }
-    }
 
-    IEnumerator WaitForAudio()
-    {
-        while (audioSource.isPlaying)
+        if (interactType == InteractType.KeypadNumber) 
         {
-            yield return null; // Wait for the next frame
+            powerResetPuzzle.KeyPressed(itemIndex.ToString());
         }
 
-        Destroy(gameObject);
-
     }
+
 }
 
 public enum InteractType
@@ -147,7 +144,8 @@ public enum InteractType
     Door,
     Breaker,
     BreakerFinal,
-    Phone
+    Phone,
+    KeypadNumber
 }
 
 public enum ItemType

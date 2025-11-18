@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     bool isGrounded = true;
 
     [SerializeField]
-    float mouseSpeed = 5f;
+    public float mouseSpeed = 5f;
 
     [SerializeField]
     float jumpHeight = 5f;
@@ -58,6 +58,18 @@ public class Player : MonoBehaviour
     public AudioSource footstepsSFX;
     public InputAction escapeButton;
 
+    Vector2 previousLookInput;
+    private Vector2 movementInput;
+    private Vector2 lookInput;
+
+    [Header("Head Bob Settings")]
+    [SerializeField] private float bobAmplitude = 0.03f;
+    [SerializeField] private float bobFrequency = 8f;
+    private float bobTimer = 0f;
+    private Vector3 cameraStartPos;
+
+    public AudioSource voicelineAs;
+
 
     private void Awake()
     {
@@ -67,7 +79,7 @@ public class Player : MonoBehaviour
         inputs.Player.Enable();
 
 
-        escapeButton = InputSystem.actions.FindAction("Escape");
+        //escapeButton = InputSystem.actions.FindAction("Escape");
         
     }
 
@@ -77,10 +89,11 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
-        controller = GetComponentInChildren<CharacterController>();
+        controller = GetComponent<CharacterController>();
+        cameraStartPos = playerCamera.localPosition;
 
-        Cursor.lockState = CursorLockMode.Confined;
-        cursorLocked = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //cursorLocked = true;
 
         //Vector3 savedPlayerPosition = new Vector3(PlayerPrefs.GetFloat("playerXPosition", 0),
         //    PlayerPrefs.GetFloat("playerYPosition", 1), PlayerPrefs.GetFloat("playerXPosition", 0));
@@ -90,15 +103,24 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (escapeButton.WasPressedThisFrame()) {
-            cursorLocked = false;
-            Cursor.lockState = CursorLockMode.None;
-        }
+        //if (escapeButton.WasPressedThisFrame()) {
+        //    cursorLocked = false;
+        //    Cursor.lockState = CursorLockMode.None;
+        //}
 
-        if (!cursorLocked && Mouse.current.leftButton.wasPressedThisFrame && Application.isFocused)
+        //if (!cursorLocked && Mouse.current.leftButton.wasPressedThisFrame && Application.isFocused)
+        //{
+        //    player.cursorLocked = true;
+        //    Cursor.lockState = CursorLockMode.Locked;
+        //}
+
+        movementInput = inputs.Player.Move.ReadValue<Vector2>();
+        lookInput = inputs.Player.Look.ReadValue<Vector2>();
+
+        if (!blockMovement)
         {
-            player.cursorLocked = true;
-            Cursor.lockState = CursorLockMode.Locked;
+            HandleMovement();
+
         }
     }
     void LateUpdate()
@@ -106,14 +128,6 @@ public class Player : MonoBehaviour
         if (!blockMovement)
         {
             HandleLook();
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (!blockMovement)
-        {
-            HandleMovement();
         }
     }
 
@@ -132,19 +146,19 @@ public class Player : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        Vector2 movementInput = inputs.Player.Move.ReadValue<Vector2>();
+        //Vector2 movementInput = inputs.Player.Move.ReadValue<Vector2>();
         float verticalInput = movementInput[1];
         float horizontalInput = movementInput[0];
 
         Vector3 move = (transform.right * horizontalInput) + (transform.forward * verticalInput);
-        controller.Move(playerSpeed * Time.deltaTime * move.normalized);
+        controller.Move(playerSpeed * Time.smoothDeltaTime * move.normalized);
 
         if (!isGrounded)
         {
-            playerVelocity.y += gravityValue * Time.deltaTime;
+            playerVelocity.y += gravityValue * Time.smoothDeltaTime;
         }
 
-        controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move(playerVelocity * Time.smoothDeltaTime);
 
         if (movementInput.magnitude >= 0.1)
         {
@@ -155,13 +169,29 @@ public class Player : MonoBehaviour
         }
 
         playerIsWalking?.Invoke(move);
+
+        if (movementInput.magnitude > 0.1f && isGrounded)
+        {
+            bobTimer += Time.smoothDeltaTime * bobFrequency * movementInput.magnitude;
+            float adjustedAmplitude = bobAmplitude * movementInput.magnitude;
+            Vector3 offset = new Vector3(0, Mathf.Sin(bobTimer) * adjustedAmplitude, 0);
+            playerCamera.localPosition = Vector3.Lerp(playerCamera.localPosition, cameraStartPos + offset, Time.smoothDeltaTime * 10f);
+        }
+        else
+        {
+            // Smoothly return to default position
+            playerCamera.localPosition = Vector3.Lerp(playerCamera.localPosition, cameraStartPos, Time.smoothDeltaTime * 5f);
+            bobTimer = 0f;
+        }
     }
 
     void HandleLook()
     {
-        Vector2 lookInput = inputs.Player.Look.ReadValue<Vector2>();
-        float mouseX = lookInput[0] * mouseSpeed * Time.deltaTime;
-        float mouseY = lookInput[1] * mouseSpeed * Time.deltaTime;
+        //Vector2 lookInput = inputs.Player.Look.ReadValue<Vector2>();
+        lookInput = Vector2.Lerp(previousLookInput, lookInput, 0.5f);
+        previousLookInput = lookInput;
+        float mouseX = lookInput[0] * mouseSpeed * Time.smoothDeltaTime;
+        float mouseY = lookInput[1] * mouseSpeed * Time.smoothDeltaTime;
 
         transform.Rotate(Vector3.up, mouseX);
 
@@ -184,5 +214,10 @@ public class Player : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void PlayVoiceLine (AudioClip voiceClip)
+    {
+        voicelineAs.PlayOneShot(voiceClip);
     }
 }

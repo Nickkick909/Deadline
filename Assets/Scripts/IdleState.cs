@@ -7,8 +7,9 @@ public class IdleState: State
 
     protected override void OnEnter()
     {
+        sc.footsteps.Pause();
         // "What was that!?"
-        timeBeforeSleep = 5;
+        timeBeforeSleep = UnityEngine.Random.Range(3f, 10f);
 
         Debug.Log("Idle State");
 
@@ -18,13 +19,14 @@ public class IdleState: State
     protected override void OnUpdate()
     {
         // Search for player
-        if (sc.DetectPlayer())
+        if (sc.DetectPlayer(sc.detectionRadius))
         {
             sc.ChangeState(sc.chaseState);
             return;
         }
 
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0))
+        if (timeBeforeSleep <= 0)
+        //if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0))
         { 
             sc.ChangeState(sc.patrolState);
         }

@@ -105,7 +105,7 @@ public class Door : MonoBehaviour
 
         if (Angle > 0)
         {
-            RotationOri.transform.Rotate(new Vector3(0, 0, 95 * Time.deltaTime));
+            RotationOri.transform.Rotate(new Vector3(0, 0, 95 * Time.deltaTime * 2));
 
             if (Angle < RotationOri.transform.localEulerAngles.z)
             {
@@ -121,7 +121,7 @@ public class Door : MonoBehaviour
         if (Angle < 0)
         {
 
-            RotationOri.transform.Rotate(new Vector3(0, 0, -95 * Time.deltaTime));
+            RotationOri.transform.Rotate(new Vector3(0, 0, -95 * Time.deltaTime * 2));
 
             if ((360+Angle) > RotationOri.transform.localEulerAngles.z)
             {
@@ -153,7 +153,7 @@ public class Door : MonoBehaviour
         if (OpenValue == 88)
         {
 
-            RotationOri.transform.Rotate(new Vector3(0, 0, -95 * Time.deltaTime));
+            RotationOri.transform.Rotate(new Vector3(0, 0, -95 * Time.deltaTime * 2));
            
 
             if ((Angle+2) > RotationOri.transform.localEulerAngles.z)
@@ -171,7 +171,7 @@ public class Door : MonoBehaviour
         if (OpenValue == -88)
         {
 
-            RotationOri.transform.Rotate(new Vector3(0, 0, 95 * Time.deltaTime));
+            RotationOri.transform.Rotate(new Vector3(0, 0, 95 * Time.deltaTime * 2));
             
             if (RotationOri.transform.localEulerAngles.z > 358)
             {
