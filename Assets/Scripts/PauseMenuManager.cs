@@ -28,6 +28,8 @@ public class PauseMenuManager : MonoBehaviour
     public GameObject middleText;
     public GameObject objectiveText;
 
+    public bool debug;
+
 
     void Awake()
     {
@@ -41,10 +43,8 @@ public class PauseMenuManager : MonoBehaviour
         sensitivitySlider.value = player.mouseSpeed;
         sensitivitySlider.onValueChanged.AddListener(UpdateSensitivity);
 
-        if (globalVolume.profile.TryGet(out depthOfField))
-        {
-            depthOfField.active = false;
-        }
+        globalVolume.profile.TryGet(out depthOfField);
+
 
         globalVolume.profile.TryGet(out vignette);
 
@@ -63,37 +63,51 @@ public class PauseMenuManager : MonoBehaviour
 
         if (isPaused)
             PauseGame();
-        //else
-        //    ResumeGame();
+        else if (debug && !isPaused)
+            ResumeGame();
     }
 
     public void PauseGame()
     {
-        pauseMenuUI.SetActive(true);
+
+        if (!debug)
+        {
+            depthOfField.active = true;
+            pauseMenuUI.SetActive(true);
+
+            EnableBlur(true);
+
+            middleText.SetActive(false);
+            objectiveText.SetActive(false);
+        }
+
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         player.blockMovement = true;
-
-        EnableBlur(true);
-
-        middleText.SetActive(false);
-        objectiveText.SetActive(false);
+        AudioListener.pause = true;
     }
 
     public void ResumeGame()
     {
-        pauseMenuUI.SetActive(false);
+
+        if (!debug)
+        {
+            depthOfField.active = false;
+            pauseMenuUI.SetActive(false);
+
+            EnableBlur(false);
+
+            middleText.SetActive(true);
+            objectiveText.SetActive(true);
+        }
+
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         isPaused = false;
         player.blockMovement = false;
-
-        EnableBlur(false);
-
-        middleText.SetActive(true);
-        objectiveText.SetActive(true);
+        AudioListener.pause = false;
     }
 
     public void UpdateSensitivity(float newValue)
@@ -128,7 +142,7 @@ public class PauseMenuManager : MonoBehaviour
         }
         else
         {
-            depthOfField.active = true; // keep active if you want subtle DoF
+            depthOfField.active = false; // keep active if you want subtle DoF
             depthOfField.mode.value = DepthOfFieldMode.Gaussian;
             depthOfField.gaussianStart.value = dofStart;
             depthOfField.gaussianEnd.value = dofEnd;

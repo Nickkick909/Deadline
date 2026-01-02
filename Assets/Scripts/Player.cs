@@ -70,6 +70,9 @@ public class Player : MonoBehaviour
 
     public AudioSource voicelineAs;
 
+    public Transform currentElevator;      // the elevator the player is standing on
+    public Vector3 previousElevatorPosition;               // last frame's elevator position
+
 
     private void Awake()
     {
@@ -183,6 +186,18 @@ public class Player : MonoBehaviour
             playerCamera.localPosition = Vector3.Lerp(playerCamera.localPosition, cameraStartPos, Time.smoothDeltaTime * 5f);
             bobTimer = 0f;
         }
+
+        Vector3 elevatorDelta = Vector3.zero;
+
+        if (currentElevator != null) // reference to the elevator the player is standing on
+        {
+            // How much the elevator moved this frame
+            elevatorDelta = currentElevator.transform.position - previousElevatorPosition;
+            previousElevatorPosition = currentElevator.transform.position;
+        }
+
+        // Apply elevator motion along with player input
+        controller.Move(playerVelocity * Time.deltaTime + elevatorDelta);
     }
 
     void HandleLook()

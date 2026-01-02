@@ -9,7 +9,7 @@ public class OffsetFlashlight : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
 
     public Light flashlight;
-    private bool isOn = false;
+    public bool isOn = false;
 
     // Audio
     public AudioSource audioSource;

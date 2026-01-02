@@ -99,13 +99,37 @@ public class InteractObject : MonoBehaviour
 
             Player.player.AddItemToInventory(gameObject);
 
-            Destroy(gameObject);
+            //Destroy(gameObject);
+
+            Renderer objRend = gameObject.GetComponent<Renderer>();
+            if (objRend != null)
+            {
+                objRend.enabled = false;
+            }
+            Collider objCollider = gameObject.GetComponent<Collider>();
+            if (objCollider != null)
+            {
+                objCollider.enabled = false;
+            }
         }
 
         if (interactType == InteractType.Door)
         {
             Debug.Log("Interact with door....");
-            gameObject.GetComponent<Door>().ActionDoor();
+
+            SmartDoor sd = gameObject.GetComponent<SmartDoor>();
+
+            if (sd != null)
+            {
+                gameObject.GetComponent<SmartDoor>().ToggleSmartDoor();
+                Debug.Log("Smart Door");
+
+            } else
+            {
+                gameObject.GetComponent<Door>().ActionDoor();
+                Debug.Log("Old Door");
+
+            }
 
             if (audioSource != null)
             {

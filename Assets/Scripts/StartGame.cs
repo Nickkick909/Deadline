@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class StartGame : MonoBehaviour
 {
@@ -18,6 +20,11 @@ public class StartGame : MonoBehaviour
     [SerializeField] bool startFullGame = true;
     [SerializeField] bool enableRedLights = false;
 
+    public Volume globalVolume;
+    private DepthOfField depthOfField;
+
+    public StoryEvent topFloorsStoryManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,7 +36,8 @@ public class StartGame : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         
-        pauseMenuManager.SetActive(false);
+
+        
 
         if (startFullGame)
         {
@@ -41,8 +49,12 @@ public class StartGame : MonoBehaviour
             player.gameObject.GetComponent<InteractWithObject>().enabled = false;
             player.footstepsSFX.enabled = false;
             objectiveUI.SetActive(false);
+            pauseMenuManager.SetActive(false);
 
-
+            if (globalVolume.profile.TryGet(out depthOfField))
+            {
+                depthOfField.active = true;
+            }
         }
         else
         {
@@ -55,12 +67,19 @@ public class StartGame : MonoBehaviour
             player.gameObject.GetComponent<InteractWithObject>().enabled = true;
             player.footstepsSFX.enabled = true;
             objectiveUI.SetActive(true);
+            pauseMenuManager.SetActive(true);
 
             if (enableRedLights)
             {
                 GameObject.FindAnyObjectByType<PhonePuzzle>().lightsAnim.SetBool("RedLights", true);
             }
 
+
+            if (globalVolume.profile.TryGet(out depthOfField))
+            {
+                depthOfField.active = false;
+
+            }
 
         }
     }
@@ -98,6 +117,8 @@ public class StartGame : MonoBehaviour
         player.enabled = true;
         player.footstepsSFX.enabled = true;
 
+        depthOfField.active = false;
+
         StartCoroutine(WaitToShowObjective());
     }
     
@@ -105,6 +126,8 @@ public class StartGame : MonoBehaviour
     IEnumerator WaitToShowObjective()
     {
         yield return new WaitForSeconds(0.25f);
+
+        topFloorsStoryManager.GetComponent<StoryEvent>().Play();
 
         ObjectiveManager.objectiveManager.UpdateObjectiveText("Time to go home after a long day at the office.");
 

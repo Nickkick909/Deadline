@@ -8,6 +8,8 @@ public class RespawnPoint : MonoBehaviour
 
     public AudioClip nextFloorRedLightsVoiceLine;
 
+    public StoryEvent startFourthFloor;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,9 +25,11 @@ public class RespawnPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ObjectiveManager.objectiveManager.UpdateObjectiveText("Why are the lights red?? That can't be good...");
-        Player.player.PlayVoiceLine(nextFloorRedLightsVoiceLine);
-        StartCoroutine(DelayedMonsterScream());
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        startFourthFloor.Play();
+        //ObjectiveManager.objectiveManager.UpdateObjectiveText("Why are the lights red?? That can't be good...");
+        //Player.player.PlayVoiceLine(nextFloorRedLightsVoiceLine);
+        //StartCoroutine(DelayedMonsterScream());
     }
 
     IEnumerator DelayedMonsterScream()

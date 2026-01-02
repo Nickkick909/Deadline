@@ -17,9 +17,13 @@ public class InteractWithObject : MonoBehaviour
 
     private InputAction interactButton;
 
+    public GameObject currentLookTarget;
+
     // Optional optimization: check ray every X seconds instead of every frame
     [SerializeField] private float rayCheckInterval = 0.02f; // 50 Hz
     private float rayCheckTimer = 0f;
+
+    public static InteractWithObject interactWithObject;
 
     private void Awake()
     {
@@ -28,7 +32,7 @@ public class InteractWithObject : MonoBehaviour
 
     void Start()
     {
-        
+        interactWithObject = this;
     }
 
 
@@ -54,6 +58,9 @@ public class InteractWithObject : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast(playerCamera.position, forward, out hit, interactRange);
 
+        currentLookTarget = hit.transform?.gameObject;
+
+
         // Keep your original layer check
         if ((1 << hit.transform?.gameObject?.layer) != interactMask)
         {
@@ -63,6 +70,8 @@ public class InteractWithObject : MonoBehaviour
         }
 
         InteractObject hitObject = hit.transform.GetComponent<InteractObject>();
+
+        
 
         // Only update highlight if the object changed
         if (hitObject != currentObject)

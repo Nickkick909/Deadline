@@ -12,6 +12,7 @@ public class PhonePuzzle : MonoBehaviour
     public PhoneFilterEffect phoneFilterEffect;
 
     public InteractObject doorToOpen;
+    public InteractObject doorToOpen2;
 
     public AudioSource monsterAudioSource;
     public AudioSource monsterAudioSource2;
@@ -23,6 +24,7 @@ public class PhonePuzzle : MonoBehaviour
     public void StartPhonePuzzle()
     {
         gameObject.GetComponent<BoxCollider>().enabled = false;
+        StartCoroutine(PlayFirstPhone());
     }
 
     public void AnswerPhone()
@@ -79,18 +81,21 @@ public class PhonePuzzle : MonoBehaviour
         if (phoneIndex >= phoneList.Length)
         {
             doorToOpen.requiresObject = false;
+            doorToOpen2.requiresObject = false;
 
-            for (int i = 0; i < redLights.Length; i++)
-            {
-                redLights[i].intensity = 1;
-            }
+            //for (int i = 0; i < redLights.Length; i++)
+            //{
+            //    redLights[i].intensity = 1;
+            //}
 
-            lightsAnim.SetBool("RedLights", true);
+            //lightsAnim.SetBool("RedLights", true);
 
-            monster.SetActive(true);
+            //monster.SetActive(true);
 
             yield return new WaitForSeconds(2);
             ObjectiveManager.objectiveManager.UpdateObjectiveText("Ok, that seems to be the last one. Lets get out of here, and keep going down stairs!!");
+
+            // Play elevator ding
         } else
         {
             PlayPhoneRing();

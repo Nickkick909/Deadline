@@ -2,199 +2,138 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-
 public class Door : MonoBehaviour
 {
-
-
     [System.Serializable]
-    public class DoorGet 
+    public class DoorGet
     {
-
         public GameObject Door;
         public int CloseValue;
         public int OpenValue;
         public bool isDoorOpen;
         public GameObject RotationOrigin;
-
-
     }
-   
+
     public List<DoorGet> UseDoors = new List<DoorGet>();
 
+    public bool door_in_use;
+    public Coroutine DoorStartUsing;
 
-   public bool door_in_use;
+    // ----------------------------
+    // Normalizes any angle to 0-360 range
+    // ----------------------------
+    private float NormalizeAngle(float a)
+    {
+        a %= 360f;
+        if (a < 0) a += 360f;
+        return a;
+    }
 
+    // ----------------------------
+    // Shortest angular difference
+    // ----------------------------
+    private bool IsCloseToAngle(float current, float target, float tolerance = 0.5f)
+    {
+        return Mathf.Abs(Mathf.DeltaAngle(current, target)) <= tolerance;
+    }
 
+    // ======================================================================
 
     public void MoveMyDoor()
     {
-
-        
         foreach (var door in UseDoors)
         {
             if (door.Door == gameObject)
             {
-                
-                   
-
-                    if (door.isDoorOpen == false && !door_in_use)
-                    {
-                        
-                        door_in_use = true;
-                        
-                        door.isDoorOpen = true;
-
-                        DoorStartUsing = StartCoroutine(OpenDoor(door.OpenValue, door.Door,door.RotationOrigin));
-
-
-
-
-                    }
-
-                    if (door.isDoorOpen == true && !door_in_use)
-                    {
-                        
-
-                        door_in_use = true;
-                        
-                        door.isDoorOpen = false;
-                        DoorStartUsing = StartCoroutine(CloseDoor(door.CloseValue, door.Door,door.OpenValue,door.RotationOrigin));
-                        
-                    }
-                
-
+                if (!door.isDoorOpen && !door_in_use)
+                {
+                    door_in_use = true;
+                    door.isDoorOpen = true;
+                    DoorStartUsing = StartCoroutine(OpenDoor(door.OpenValue, door.Door, door.RotationOrigin));
+                }
+                else if (door.isDoorOpen && !door_in_use)
+                {
+                    door_in_use = true;
+                    door.isDoorOpen = false;
+                    DoorStartUsing = StartCoroutine(CloseDoor(door.CloseValue, door.Door, door.OpenValue, door.RotationOrigin));
+                }
             }
         }
     }
 
-
-
-
-        public void ActionDoor()
-        {
-
-
-
+    public void ActionDoor()
+    {
         foreach (var door in UseDoors)
         {
-           
             door.Door.GetComponent<Door>().MoveMyDoor();
-
         }
-
-
-        } 
-
-
-    
-
-    public Coroutine DoorStartUsing;
-    
-
-    public IEnumerator OpenDoor(int Angle,GameObject currentDoor,GameObject RotationOri)
-    {
-        
-
-        repeatLoop:
-        yield return new WaitForSeconds(0.01f);
-        
-      
-
-        if (Angle > 0)
-        {
-            RotationOri.transform.Rotate(new Vector3(0, 0, 95 * Time.deltaTime * 2));
-
-            if (Angle < RotationOri.transform.localEulerAngles.z)
-            {
-
-                door_in_use = false;
-                StopCoroutine(DoorStartUsing);
-            }
-            if (Angle != RotationOri.transform.localEulerAngles.y)
-            {
-                goto repeatLoop; 
-            }
-        }
-        if (Angle < 0)
-        {
-
-            RotationOri.transform.Rotate(new Vector3(0, 0, -95 * Time.deltaTime * 2));
-
-            if ((360+Angle) > RotationOri.transform.localEulerAngles.z)
-            {
-
-                door_in_use = false;
-                StopCoroutine(DoorStartUsing);
-            }
-            if (Angle != RotationOri.transform.localEulerAngles.y)
-            {
-                
-                goto repeatLoop;
-            }
-        }
-
-        
-        
     }
 
-
-
-    public IEnumerator CloseDoor(int Angle, GameObject currentDoor,int OpenValue, GameObject RotationOri)
+    // ======================================================================
+    // OPEN DOOR
+    // ======================================================================
+    public IEnumerator OpenDoor(int targetAngle, GameObject currentDoor, GameObject RotationOri)
     {
-        repeatLoop:
-        yield return new WaitForSeconds(0.008f);
+        float target = NormalizeAngle(targetAngle);
 
-       
-
-
-        if (OpenValue == 88)
+        while (true)
         {
+            yield return new WaitForSeconds(0.01f);
 
-            RotationOri.transform.Rotate(new Vector3(0, 0, -95 * Time.deltaTime * 2));
-           
+            float current = NormalizeAngle(RotationOri.transform.localEulerAngles.z);
 
-            if ((Angle+2) > RotationOri.transform.localEulerAngles.z)
+            // Rotate toward target
+            float direction = Mathf.DeltaAngle(current, target) > 0 ? 1f : -1f;
+            RotationOri.transform.Rotate(new Vector3(0, 0, direction * 95f * Time.deltaTime * 2f));
+
+            current = NormalizeAngle(RotationOri.transform.localEulerAngles.z);
+
+            // Stop when close enough
+            if (IsCloseToAngle(current, target, 1f))
             {
+                RotationOri.transform.localEulerAngles =
+                    new Vector3(RotationOri.transform.localEulerAngles.x,
+                                RotationOri.transform.localEulerAngles.y,
+                                target);
 
                 door_in_use = false;
-                RotationOri.transform.localEulerAngles = new Vector3(RotationOri.transform.localEulerAngles.x, RotationOri.transform.localEulerAngles.y, Angle);
-                StopCoroutine(DoorStartUsing);
-            }
-            if (Angle != RotationOri.transform.localEulerAngles.z)
-            {
-                goto repeatLoop;
+                yield break;
             }
         }
-        if (OpenValue == -88)
-        {
-
-            RotationOri.transform.Rotate(new Vector3(0, 0, 95 * Time.deltaTime * 2));
-            
-            if (RotationOri.transform.localEulerAngles.z > 358)
-            {
-
-                door_in_use = false;
-                RotationOri.transform.localEulerAngles = new Vector3(RotationOri.transform.localEulerAngles.x, RotationOri.transform.localEulerAngles.y, Angle);
-                StopCoroutine(DoorStartUsing);
-            }
-            if (Angle != RotationOri.transform.localEulerAngles.z)
-            {
-
-                goto repeatLoop;
-            }
-        }
-
-
-
-
-        if (Angle != RotationOri.transform.localEulerAngles.z)
-        {
-            goto repeatLoop;
-        }
-
     }
 
+    // ======================================================================
+    // CLOSE DOOR
+    // ======================================================================
+    public IEnumerator CloseDoor(int targetAngle, GameObject currentDoor, int openValue, GameObject RotationOri)
+    {
+        float target = NormalizeAngle(targetAngle);
+
+        while (true)
+        {
+            yield return new WaitForSeconds(0.008f);
+
+            float current = NormalizeAngle(RotationOri.transform.localEulerAngles.z);
+
+            // Determine direction back to the closed position
+            float direction = Mathf.DeltaAngle(current, target) > 0 ? 1f : -1f;
+
+            // Rotate toward target
+            RotationOri.transform.Rotate(new Vector3(0, 0, direction * 95f * Time.deltaTime * 2f));
+
+            current = NormalizeAngle(RotationOri.transform.localEulerAngles.z);
+
+            // Stop when close enough
+            if (IsCloseToAngle(current, target, 1f))
+            {
+                RotationOri.transform.localEulerAngles =
+                    new Vector3(RotationOri.transform.localEulerAngles.x,
+                                RotationOri.transform.localEulerAngles.y,
+                                target);
+
+                door_in_use = false;
+                yield break;
+            }
+        }
+    }
 }
