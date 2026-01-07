@@ -29,6 +29,8 @@ public class IntroMonsterCutscene : MonoBehaviour
     public GameObject doorToClose;
     public GameObject doorToClose2;
 
+    public StoryEvent afterIntroStory;
+
     private void Start()
     {
         monsterBreathingAudio.enabled = false;
@@ -289,7 +291,8 @@ public class IntroMonsterCutscene : MonoBehaviour
         Player.player.footstepsSFX.enabled = true;
 
 
-        Destroy(gameObject);
+        gameObject.GetComponent<Collider>().enabled = false;
+        afterIntroStory.Play();
     }
 
     IEnumerator WaitForAnimation(Animator animator, string stateName)

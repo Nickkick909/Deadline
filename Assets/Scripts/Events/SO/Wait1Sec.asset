@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38e8bc40713374044abd171439c2b2a8, type: 3}
-  m_Name: WhatWasThat
-  m_EditorClassIdentifier: Assembly-CSharp::PlayVoiceLineEvent
-  clip: {fileID: 8300000, guid: 0b842883d0d62bc4fbd958e65e298c13, type: 3}
-  waitFullClip: 1
+  m_Script: {fileID: 11500000, guid: d23145d1cb2bc534fa8a48425cc14071, type: 3}
+  m_Name: Wait1Sec
+  m_EditorClassIdentifier: Assembly-CSharp::WaitEvent
+  waitTime: 1

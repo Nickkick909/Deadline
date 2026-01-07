@@ -21,6 +21,8 @@ public class PhonePuzzle : MonoBehaviour
     public GameObject monster;
     public Animator lightsAnim;
 
+    public bool phoneRinging = false;
+
     public void StartPhonePuzzle()
     {
         gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -58,6 +60,8 @@ public class PhonePuzzle : MonoBehaviour
         {
             yield return null; // Wait for the next frame
         }
+
+        phoneRinging = false;
 
         yield return new WaitForSeconds(1);
 
@@ -108,6 +112,7 @@ public class PhonePuzzle : MonoBehaviour
 
     public void PlayPhoneRing()
     {
+        phoneRinging = true;
         Debug.Log("Playing next phone");
         currentAudioSource = phoneList[phoneIndex].GetComponent<AudioSource>();
         currentAudioSource.enabled = true;

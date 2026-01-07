@@ -105,6 +105,7 @@ public class StartGame : MonoBehaviour
         pauseMenuManager.SetActive(true);
 
         Camera.main.transform.localPosition = new Vector3(0, 0, 0);
+        Camera.main.fieldOfView = 90;
 
         //flashlightBar.SetActive(true);
         player.blockMovement = false;

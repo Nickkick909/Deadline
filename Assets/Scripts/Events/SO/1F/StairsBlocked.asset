@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38e8bc40713374044abd171439c2b2a8, type: 3}
-  m_Name: WhatWasThat
+  m_Name: StairsBlocked
   m_EditorClassIdentifier: Assembly-CSharp::PlayVoiceLineEvent
-  clip: {fileID: 8300000, guid: 0b842883d0d62bc4fbd958e65e298c13, type: 3}
+  clip: {fileID: 8300000, guid: 5ba775370f2f6ad469db4a73910c0bd8, type: 3}
   waitFullClip: 1

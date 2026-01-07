@@ -21,6 +21,7 @@ public class BreakerPuzzle : MonoBehaviour
     public AudioSource breakerAudioSource;
 
     private bool init = false;
+    public bool readyForMainBreaker = false;
     public bool completed = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -47,6 +48,8 @@ public class BreakerPuzzle : MonoBehaviour
         }
 
         redLight.EnableKeyword("_EMISSION");
+
+        readyForMainBreaker = true;
 
         for (int i = 0; i < breakerStates.Length; i++)
         {
