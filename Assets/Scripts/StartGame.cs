@@ -120,6 +120,9 @@ public class StartGame : MonoBehaviour
 
         depthOfField.active = false;
 
+        flashlight.gameObject.SetActive(false);
+
+
         StartCoroutine(WaitToShowObjective());
     }
     
